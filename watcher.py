@@ -8,8 +8,7 @@ from watchdog.events import FileSystemEventHandler
 import sqlite3 # Untuk mendapatkan user_id dari user_profiles.db
 
 # Konfigurasi
-PHOTO_STORAGE_FOLDER = 'data_foto/data_photo'
-DATABASE_USER_PROFILE = 'user_profiles.db'
+PHOTO_STORAGE_FOLDER = 'data_foto'
 
 # Pastikan folder foto ada
 if not os.path.exists(PHOTO_STORAGE_FOLDER):

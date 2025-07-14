@@ -20,7 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Konfigurasi database SQLite
 DATABASE_USER_PROFILE = 'database_user/user_profiles.db'
-DATABASE_PHOTO_VECTOR = 'database_foto_vector/photo_vectors.db'
+DATABASE_PHOTO_VECTOR = 'database_foto_vector/face_vectors.db'
 
 # Fungsi untuk mendapatkan koneksi database profil pengguna
 def get_user_profile_db_connection():
