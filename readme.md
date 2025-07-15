@@ -25,7 +25,8 @@ Imagine a system that not only sees, but truly recognizes. A system capable of i
 4.  **Sample Photo Data for Learning**
 5.  **API Response Example (`/upload_photo`)**
 
-## A. Core System Flow:
+
+## A. Core System Flow
 
 ### **1. Photo Capture: The Initial Data Gateway**
 
