@@ -1,9 +1,6 @@
-Imagine a system that not only sees, but truly recognizes. A system capable of identifying individuals with precision, opening doors to enhanced security, personalization, automatic registration / enrollment, validation transaction. This is the architectural story behind your face recognition system, a journey of biometric data from raw images to verified identities.
+The Story Behind Your Face Recognition System
 
-
-![ss](./design/architecture.png)
-
-
+Imagine a system that not only sees, but truly recognizes. A system capable of identifying individuals with precision, opening doors to enhanced security, personalization, automatic registration / enrollment, and validation transactions. This is the architectural story behind your face recognition system, a journey of biometric data from raw images to verified identities.
 Core System Flow:
 1. Photo Capture: The Initial Data Gateway
 
@@ -150,31 +147,28 @@ System Demonstration
 
 Here are some screenshots demonstrating the system in action:
 1. Running convert.py
-   
-   ![ss](./ss/3.jpg)
 
 This screenshot shows the convert.py process loading the FaceNet/MTCNN models and converting photos in data_foto into vectors, then storing them in the Annoy Index and updating the SQLite database.
-
 2. Running app.py
 
-   ![ss](./ss/1.jpg)
-
 This screenshot shows app.py running as a Flask server, ready to receive API requests for face recognition. You will see messages indicating that the FaceNet/MTCNN models have been loaded.
-
 3. User Profile Database Structure (user_profiles.db)
 
-   ![ss](./ss/2.jpg)
-
 A screenshot from a tool like DB Browser for SQLite showing the users table in user_profiles.db, displaying the id, name, email, and face_id columns populated after convert.py has run.
-
 4. Sample Photo Data for Learning
 
 Here are example photos used as reference data in the data_foto/ folder for the system to "learn":
 
-   ![ss](./ss/6.jpg)
+    ronaldo.jpg
+
+    messi.jpg
+
+    marcelino.jpg
+
+    jane_doe.jpg
+
+    ... (Add your photo filenames here)
 
 5. API Response Example (/upload_photo)
 
-   ![ss](./ss/5.jpg)
-
-A screenshot from Postman/Insomnia or another API testing tool, displaying the JSON response from the /upload_photo endpoint after uploading a photo. This response will indicate if a face was recognized, the matching user_id, the face_id in Annoy, the similarity_score, and the complete profile data.
+A screenshot from Postman/Insomnia or another API testing tool, displaying the JSON response from the /upload_photo endpoint after uploading a photo. This response will indicate if a face was recognized, the matching user_id, the face_id in Annoy, the similarity_score, and the complete profile data.                
