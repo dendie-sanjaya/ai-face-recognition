@@ -1,11 +1,33 @@
+# The Architecture of Your Smart Face Recognition System
+
 Imagine a system that not only sees, but truly recognizes. A system capable of identifying individuals with precision, opening doors to enhanced security, personalization, automatic registration / enrollment, validation transaction. This is the architectural story behind your face recognition system, a journey of biometric data from raw images to verified identities.
 
+## Table of Contents
+
+### A. Core System Flow: From Pixels to Verified Identities
+1.  **Photo Capture: The Initial Data Gateway**
+2.  **Face Conversion & Indexing: From Pixels to Smart Vectors**
+3.  **Face Recognition & Verification: The Moment of Truth**
+4.  **Automated Registration: Seamless Enrollment with Face Recognition**
+5.  **Key Technologies: The Foundation of Your System**
+
+### B. System & Environment Installation
+1.  **Update System Packages**
+2.  **Install Essential Build Tools and Libraries**
+3.  **Install Python Dependencies (with Virtual Environment)**
+
+### C. System Demonstration: Real-World Action
+1.  **Running `convert.py`**
+2.  **Running `app.py` (Backend API)**
+3.  **User Profile Database Structure (`user_profiles.db`)**
+4.  **Sample Photo Data for Learning**
+5.  **API Response Example (`/upload_photo`)**
 
 ![ss](./design/architecture.png)
 
-## Core System Flow:
+## A. Core System Flow:
 
-**1. Photo Capture: The Initial Data Gateway**
+### **1. Photo Capture: The Initial Data Gateway**
 
 Every journey begins with an image. In this system, there are two main ways face photos enter the ecosystem:
 
@@ -13,7 +35,7 @@ Real-time Verification via Camera: For instant verification needs, such as acces
 
 Bulk Registration via FTP: To manage a large user database, photos can be uploaded collectively as Bulk Photos via FTP. These photos then land securely in Photo Storage, awaiting processing.
 
-**2. Face Conversion and Indexing: From Pixels to Smart Vectors**
+### **2. Face Conversion and Indexing: From Pixels to Smart Vectors**
 
 This is the heart of your system's recognition capability, where images are transformed into biometric data that machines can understand:
 
@@ -29,7 +51,7 @@ Fast Storage with Annoy: These feature vectors are then stored in the User Photo
 
 User Profile Integration: Each vector stored in Annoy has a unique ID (Annoy ID). This ID is also updated in the User Profile Database (initially set up by init_db.py), linking the face vector to the user's personal data (name, email, etc.).
 
-**3. Face Recognition and Verification: The Moment of Truth**
+### **3. Face Recognition and Verification: The Moment of Truth**
 
 When it's time to recognize someone, the system works quickly and intelligently:
 
@@ -46,7 +68,7 @@ Operational Brain (app.py): When a photo is uploaded to the API for verification
     Profile Details: If a match is found, app.py retrieves the complete user profile details from the User Profile Database and returns them via the API, providing a rich and informative response.
 
 
-**4. Automated Registration: Seamless Enrollment with Face Recognition**
+###  **4. Automated Registration: Seamless Enrollment with Face Recognition**
 
 Beyond just recognizing, this system can also facilitate automatic registration of new users simply by providing their photo. This streamlines the enrollment process, making it more intuitive and efficient:
 
@@ -67,7 +89,7 @@ Verification for New Registrations: Once the photo is processed and the profile/
 This automated registration process minimizes manual data entry and leverages the core face recognition pipeline to seamlessly enroll new individuals into the system.
 Key Technologies: The Foundation of Your System
 
-**5. This system is built upon a strong foundation of modern technologies:**    
+### **5. This system is built upon a strong foundation of modern technologies:**    
 
     MTCNN (Multi-task Cascaded Convolutional Networks): An efficient deep learning model for face detection and alignment, ensuring accurate faces for feature extraction.
     
@@ -88,14 +110,14 @@ Setup and Installation
 
 To get this system up and running, follow these installation steps. These commands are typically run in a Linux environment (like WSL or a native Linux distribution).
 
-## Install Lib Python
+## B. Install Lib Python
 
-**1. Update System Packages**
+### **1. Update System Packages**
 First, ensure your system's package list is up-to-date:
 
     sudo apt update
 
-**2. Install Essential Build Tools and Libraries**
+### **2. Install Essential Build Tools and Libraries**
 
 These packages provide necessary compilers, development tools, and core libraries required for building Python packages, especially those with C/C++ extensions (like dlib or parts of tensorflow and opencv-python):
 
@@ -118,7 +140,7 @@ These packages provide necessary compilers, development tools, and core librarie
     python3-dev, python3-pip: Python 3 development headers and pip package installer.
 
 
-**3. Install Python Dependencies**
+### **3. Install Python Dependencies**
 
 After installing system-level prerequisites, you can install the Python libraries using pip. It's highly recommended to use a virtual environment to manage your project's dependencies.
 
@@ -151,22 +173,22 @@ Note on TensorFlow:
     If you don't have a GPU or prefer to run on CPU, tensorflow (CPU-only version) is sufficient.
 
 
-## System Demonstration
+## C. System Demonstration
 
 Here are some screenshots demonstrating the system in action:
-**1. Running convert.py**   
+### **1. Running convert.py**   
 
    ![ss](./ss/3.jpg)
 
 This screenshot shows the convert.py process loading the FaceNet/MTCNN models and converting photos in data_foto into vectors, then storing them in the Annoy Index and updating the SQLite database.**
 
-2. **Running app.py**
+### 2. **Running app.py**
    
    ![ss](./ss/1.jpg)
 
 This screenshot shows app.py running as a Flask server, ready to receive API requests for face recognition. You will see messages indicating that the FaceNet/MTCNN models have been loaded.
 
-**3. User Profile Database Structure (user_profiles.db)**
+### **3. User Profile Database Structure (user_profiles.db)**
 
    ![ss](./ss/2.jpg)
 
@@ -178,7 +200,7 @@ Here are example photos used as reference data in the data_foto/ folder for the 
 
    ![ss](./ss/6.jpg)
 
-**5. API Response Example (/upload_photo)**
+### **5. API Response Example (/upload_photo)**
 
    ![ss](./ss/5.jpg)
 
