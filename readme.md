@@ -2,6 +2,8 @@
 
 Imagine a system that not only sees, but truly recognizes. A system capable of identifying individuals with precision, opening doors to enhanced security, personalization, automatic registration / enrollment, validation transaction. This is the architectural story behind your face recognition system, a journey of biometric data from raw images to verified identities.
 
+![ss](./design/architecture.png)
+
 ## Table of Contents
 
 ### A. Core System Flow: From Pixels to Verified Identities
@@ -22,8 +24,6 @@ Imagine a system that not only sees, but truly recognizes. A system capable of i
 3.  **User Profile Database Structure (`user_profiles.db`)**
 4.  **Sample Photo Data for Learning**
 5.  **API Response Example (`/upload_photo`)**
-
-![ss](./design/architecture.png)
 
 ## A. Core System Flow:
 
