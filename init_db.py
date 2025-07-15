@@ -20,6 +20,7 @@ def init_user_profile_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY, -- This will store the photo filename (without extension) as the key
+            face_id INTEGER UNIQUE, -- Unique ID for the face vector in Annoy index
             name TEXT NOT NULL,
             email TEXT UNIQUE,
             date_of_birth TEXT,
