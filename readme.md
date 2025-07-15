@@ -38,36 +38,13 @@ Bulk Registration via FTP: To manage a large user database, photos can be upload
 
 ### **2. Face Conversion and Indexing: From Pixels to Smart Vectors**
 
-This is the heart of your system's recognition capability, where images are transformed into biometric data that machines can understand:
-
-Automated Gatekeeper (Watcher): As soon as a new or updated photo arrives in Photo Storage, the Watcher (watcher.py), running in the background (often in environments like Python3 for stability and compatibility), immediately detects it. The Watcher acts as an automated gatekeeper, ensuring no photo is missed.
-
-Vector Factory (Convert.py): Once detected, the Watcher triggers Convert Photo to Format Vector (convert.py). This is where the AI magic begins:
-
-Face Detection with MTCNN: First, convert.py uses the MTCNN (Multi-task Cascaded Convolutional Networks) model. MTCNN's job is to accurately find face locations within the image and crop them, ensuring only relevant faces are processed.
-
-Feature Extraction with FaceNet: The detected faces are then fed into the AI Model Face Recognition, specifically FaceNet. FaceNet is an advanced deep learning model that transforms each face into a unique set of numbers, or what we call feature vectors (embeddings). These vectors are the biometric "digital fingerprints" of the faces.
-
-Fast Storage with Annoy: These feature vectors are then stored in the User Photo Vector Database. To ensure incredibly fast searches among millions of vectors, this database is indexed using Annoy Index. Annoy is an Approximate Nearest Neighbors library designed for high-speed similarity searches.
-
-User Profile Integration: Each vector stored in Annoy has a unique ID (Annoy ID). This ID is also updated in the User Profile Database (initially set up by init_db.py), linking the face vector to the user's personal data (name, email, etc.).
+This system transforms images into machine-readable biometric data. It starts with the Watcher, an automated gatekeeper that detects new photos. The Vector Factory then uses MTCNN to find faces and FaceNet to convert them into unique feature vectors (embeddings)—digital fingerprints. These vectors are stored in the User Photo Vector Database, indexed by Annoy for fast searches, and linked to user profiles via a unique Annoy I
 
 ### **3. Face Recognition and Verification: The Moment of Truth**
 
 When it's time to recognize someone, the system works quickly and intelligently:
 
 Requests from the Outside World: Whether it's your developed Frontend App or another Third-Party System, they interact with this system via a REST JSON API. This is the universal language that allows various applications to communicate with your face recognition system.
-
-Operational Brain (app.py): When a photo is uploaded to the API for verification, the Backend API (app.py) is the first to receive it.
-
-    Real-time Vector Extraction: Similar to convert.py, app.py also uses MTCNN to detect faces and FaceNet to extract feature vectors from the newly uploaded photo. Consistency in using these models is crucial for accuracy.
-
-    Fast Similarity Search: The newly extracted vector is then directly sent to the User Photo Vector Database (indexed by Annoy Index) to find the most similar vectors.
-
-    Accuracy Assessment: The result is a similarity score (e.g., Cosine Similarity) indicating how closely the uploaded face matches faces stored in the database. If this score exceeds a certain threshold, the system considers it a biometric match.
-
-    Profile Details: If a match is found, app.py retrieves the complete user profile details from the User Profile Database and returns them via the API, providing a rich and informative response.
-
 
 ###  **4. Automated Registration: Seamless Enrollment with Face Recognition**
 
@@ -85,11 +62,6 @@ Vector Creation and Database Update: convert.py processes this new photo:
 
     Crucially, the convert.py script also updates the User Profile Database. If a user profile with the corresponding user_id (from the filename) doesn't exist, convert.py can automatically insert a new user record into the users table, linking it with the newly generated face_id (Annoy ID). This creates a new profile for the registered face.
 
-Verification for New Registrations: Once the photo is processed and the profile/vector updated, the new user's face is now part of the recognition system. Subsequent verification attempts will be able to identify them.
-
-This automated registration process minimizes manual data entry and leverages the core face recognition pipeline to seamlessly enroll new individuals into the system.
-Key Technologies: The Foundation of Your System
-
 ### **5. This system is built upon a strong foundation of modern technologies:**    
 
     MTCNN (Multi-task Cascaded Convolutional Networks): An efficient deep learning model for face detection and alignment, ensuring accurate faces for feature extraction.
@@ -105,11 +77,9 @@ Key Technologies: The Foundation of Your System
     SQLite: A lightweight database used for the User Profile Database, suitable for local data management and prototyping.
     
     Watchdog: A Python library for monitoring file system changes in real-time, ensuring the automation of the conversion process.
-    
-    This system is designed to enable automated face registration and fast, efficient biometric face verification, unlocking potential for various security and personalization applications.
-Setup and Installation
 
-To get this system up and running, follow these installation steps. These commands are typically run in a Linux environment (like WSL or a native Linux distribution).
+This system is designed to enable automated face registration and fast, efficient biometric face verification, unlocking potential for various security and personalization applications.
+Setup and Installation
 
 ## B. Install Lib Python
 
@@ -167,11 +137,6 @@ requirements.txt
     mtcnn
     keras-facenet
     tensorflow # Or tensorflow-gpu if you have a compatible NVIDIA GPU and setup
-
-Note on TensorFlow:
-
-    If you have an NVIDIA GPU and a properly configured CUDA Toolkit and cuDNN, you might want to install tensorflow-gpu (or just tensorflow if your version automatically includes GPU support). This will significantly speed up FaceNet operations.
-    If you don't have a GPU or prefer to run on CPU, tensorflow (CPU-only version) is sufficient.
 
 
 ## C. System Demonstration
