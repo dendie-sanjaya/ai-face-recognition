@@ -4,3 +4,6 @@ numpy
 annoy
 dlib
 annoy
+tensorflow 
+keras-facenet 
+mtcnn
